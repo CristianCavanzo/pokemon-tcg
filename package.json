@@ -1,0 +1,30 @@
+{
+  "name": "pokemon-tcg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "next lint",
+    "dev": "next dev"
+  },
+  "keywords": [],
+  "author": "Cristian Cavanzo",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.0",
+    "@types/react": "^18.0.21",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.25.0",
+    "eslint-config-next": "12.3.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
+  }
+}
