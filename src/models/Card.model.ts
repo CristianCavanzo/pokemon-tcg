@@ -1,3 +1,4 @@
+import { ErrorsResponse } from '@models/Error.model';
 export interface Card {
 	name: string;
 	images: {
@@ -6,3 +7,5 @@ export interface Card {
 	};
 	rarity: string;
 }
+
+export type CardRequest = Card[] | ErrorsResponse;

@@ -1,20 +1,47 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card } from '@models/Card.model';
+import { Card, CardRequest } from '@models/Card.model';
 import Image from 'next/image';
+
 const Home = () => {
-	const [state, setState] = useState<{ cards: Card[] | undefined }>({
+	interface States {
+		cards: Card[] | undefined;
+		cardsError: {
+			error: boolean;
+			message: string;
+		};
+	}
+	const [state, setState] = useState<States>({
 		cards: undefined,
+		cardsError: {
+			error: false,
+			message: '',
+		},
 	});
+
 	const handleCards = async () => {
-		const { data } = await axios<Card[]>({ method: 'GET', url: '/api/cards/getAll' });
-		return data;
+		try {
+			const { data } = await axios<CardRequest>({
+				method: 'GET',
+				url: '/api/cards/getAll',
+			});
+			return data;
+		} catch (error: unknown) {
+			if (axios.isAxiosError(error)) {
+				setState({ ...state, cardsError: { error: true, message: 'Error en la peticion' } });
+			} else {
+				setState({ ...state, cardsError: { error: true, message: 'Error inesperado' } });
+			}
+		}
 	};
 	useEffect(() => {
 		(async () => {
 			const cards = await handleCards();
-			setState({ ...state, cards });
-			console.log(state);
+			if (Array.isArray(cards)) {
+				setState({ ...state, cards });
+			} else if (cards) {
+				setState({ ...state, cardsError: { error: true, message: cards.message } });
+			}
 		})();
 	}, []);
 
@@ -35,6 +62,7 @@ const Home = () => {
 						</div>
 					</div>
 				))}
+			{state.cardsError.error && <p>Error {state.cardsError.message}</p>}
 		</div>
 	);
 };
