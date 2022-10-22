@@ -4,17 +4,13 @@ import { endpoints } from './../endpoints/index';
 import axios from 'axios';
 import { ERROSMESSAGE } from '@models/Error.model';
 
-export const getCards = async (): Promise<CardRequest> => {
+export const getCardsApi = async (): Promise<CardRequest> => {
 	try {
-		const {
-			data: { data },
-		} = await axios<{ data: Card[] }>({
+		const { data } = await axios<Card[]>({
 			method: 'GET',
-			url: endpoints.cards.getCards,
-			params: {
-				pageSize: 1,
-			},
+			url: endpoints.cards.getCardsApi,
 		});
+		console.log(data);
 		if (!data) {
 			throw new Error('Error en la api');
 		}

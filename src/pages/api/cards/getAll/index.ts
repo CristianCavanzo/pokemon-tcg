@@ -6,7 +6,7 @@ import { NextApiResponse, NextApiRequest } from 'next';
 export default async function App(req: NextApiRequest, res: NextApiResponse<CardRequest>) {
 	try {
 		const data = await getCards();
-		if (typeof data === 'object') {
+		if (Array.isArray(data)) {
 			const cards: Card[] = [];
 			data.map((card: Card) => {
 				cards.push({
@@ -20,7 +20,7 @@ export default async function App(req: NextApiRequest, res: NextApiResponse<Card
 			});
 			return res.status(200).json(cards);
 		} else {
-			return res.status(200).json({ error: true, message: 'Error de servidor' });
+			return res.status(200).json({ error: true, message: data.message });
 		}
 	} catch (error) {
 		return res.status(200).json({ error: true, message: 'Error de servidor' });
