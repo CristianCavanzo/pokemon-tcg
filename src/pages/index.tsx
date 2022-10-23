@@ -3,7 +3,8 @@ import { Card, CardRequest } from '@models/Card.model';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { getCardsApi } from '@services/cards/getCardsApi';
-
+import { Searcher } from '@components/Searcher';
+import { SearcherInterface } from '@models/ComponentModels/Searcher.model';
 const Div = styled.div`
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -42,11 +43,18 @@ const Home = () => {
 			}
 		})();
 	}, []);
-
+	const busqueda: SearcherInterface[] = [
+		{
+			name: 'Types',
+			type: 'select',
+			options: ['Hola', 'Hola 2'],
+		},
+	];
 	return (
 		<Div>
+			<Searcher placeholder="Realiza tu busqueda" options={busqueda} />
 			{state.cards &&
-				state.cards.map((card, index) => (
+				state.cards?.map((card, index) => (
 					<div key={`${card}_${index}`}>
 						<p>{card.name}</p>
 						<div

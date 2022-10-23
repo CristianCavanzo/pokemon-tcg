@@ -3,7 +3,8 @@
 		"baseUrl": "src",
 		"paths": {
 			"@models/*": ["models/*"],
-			"@services/*": ["services/*"]
+			"@services/*": ["services/*"],
+			"@components/*": ["components/*"]
 		},
 		"target": "es6",
 		"lib": ["dom", "dom.iterable", "esnext"],
