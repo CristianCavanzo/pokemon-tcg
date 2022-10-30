@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Card, CardRequest } from '@models/Card.model';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -51,25 +51,29 @@ const Home = () => {
 		},
 	];
 	return (
-		<Div>
-			<Searcher placeholder="Realiza tu busqueda" options={busqueda} />
-			{state.cards &&
-				state.cards?.map((card, index) => (
-					<div key={`${card}_${index}`}>
-						<p>{card.name}</p>
-						<div
-							style={{
-								width: '315px',
-								height: '433px',
-								position: 'relative',
-							}}
-						>
-							<Image src={card.images.large} alt={card.name} layout="fill" />
+		<Fragment>
+			<header>
+				<Searcher placeholder="Realiza tu busqueda" options={busqueda} />
+			</header>
+			<Div>
+				{state.cards &&
+					state.cards?.map((card, index) => (
+						<div key={`${card}_${index}`}>
+							<p>{card.name}</p>
+							<div
+								style={{
+									width: '315px',
+									height: '433px',
+									position: 'relative',
+								}}
+							>
+								<Image src={card.images.large} alt={card.name} layout="fill" />
+							</div>
 						</div>
-					</div>
-				))}
-			{state.cardsError.error && <p>Error {state.cardsError.message}</p>}
-		</Div>
+					))}
+				{state.cardsError.error && <p>Error {state.cardsError.message}</p>}
+			</Div>
+		</Fragment>
 	);
 };
 
