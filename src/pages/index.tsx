@@ -9,6 +9,7 @@ const Div = styled.div`
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 `;
+
 const Home = () => {
 	interface States {
 		cards: Card[] | undefined;
@@ -71,6 +72,7 @@ const Home = () => {
 							</div>
 						</div>
 					))}
+
 				{state.cardsError.error && <p>Error {state.cardsError.message}</p>}
 			</Div>
 		</Fragment>

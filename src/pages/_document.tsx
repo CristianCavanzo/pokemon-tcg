@@ -4,8 +4,7 @@ export default function Document() {
 	return (
 		<Html>
 			<Head />
-			<body style={{ background: 'var(--black)', display: 'flex' }}>
-				<div>Hola</div>
+			<body>
 				<Main />
 				<NextScript />
 			</body>

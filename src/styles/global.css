@@ -37,6 +37,9 @@
 	--red: #eb5757;
 	--blue: #2f80ed;
 }
+body {
+	background: #202020;
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -62,4 +65,22 @@
 }
 .fw-sb {
 	font-weight: 600;
+}
+.fw-b {
+	font-weight: bold;
+}
+.fs-xl {
+	font-size: var(--xl);
+}
+.fs-l {
+	font-size: var(--l);
+}
+.fs-m {
+	font-size: var(--m);
+}
+.fs-s {
+	font-size: var(--s);
+}
+.fs-xs {
+	font-size: var(--xs);
 }
